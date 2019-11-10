@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<app-component xmlns="http://schemas.haulmont.com/cuba/app-component.xsd"
+               dependsOn="com.haulmont.cuba">
+
+    <module name="global" blocks="*">
+        <artifact name="dynattrext-global" appJar="true"/>
+
+        <property name="cuba.persistenceConfig"
+                  value="+it/nexbit/cuba/dynamicattributesext/persistence.xml"/>
+        <property name="cuba.metadataConfig"
+                  value="+it/nexbit/cuba/dynamicattributesext/metadata.xml"/>
+        <property name="cuba.viewsConfig" value="+it/nexbit/cuba/dynamicattributesext/views.xml"/>
+    </module>
+    <module name="core" dependsOn="global" blocks="core">
+        <artifact name="dynattrext-core" appJar="true"/>
+        <artifact name="dynattrext-core" classifier="db" ext="zip" configuration="dbscripts"/>
+
+        <property name="cuba.springContextConfig"
+                  value="+it/nexbit/cuba/dynamicattributesext/spring.xml"/>
+        <property name="cuba.mainMessagePack" value="+it.nexbit.cuba.dynamicattributesext.core"/>
+    </module>
+    <module name="web" dependsOn="global" blocks="web">
+        <artifact name="dynattrext-web" appJar="true"/>
+        <artifact name="dynattrext-web" classifier="web" ext="zip" configuration="webcontent"/>
+
+        <property name="cuba.springContextConfig"
+                  value="+it/nexbit/cuba/dynamicattributesext/web-spring.xml"/>
+        <property name="cuba.dispatcherSpringContextConfig"
+                  value="+it/nexbit/cuba/dynamicattributesext/web-dispatcher-spring.xml"/>
+        <property name="cuba.windowConfig"
+                  value="+it/nexbit/cuba/dynamicattributesext/web-screens.xml"/>
+        <property name="cuba.menuConfig"
+                  value="+it/nexbit/cuba/dynamicattributesext/web-menu.xml"/>
+        <property name="cuba.permissionConfig"
+                  value="+it/nexbit/cuba/dynamicattributesext/web-permissions.xml"/>
+        <property name="cuba.mainMessagePack" value="+it.nexbit.cuba.dynamicattributesext.web"/>
+    </module>
+</app-component>

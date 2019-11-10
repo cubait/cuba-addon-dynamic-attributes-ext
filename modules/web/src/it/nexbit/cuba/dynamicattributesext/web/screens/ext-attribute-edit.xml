@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        class="it.nexbit.cuba.dynamicattributesext.web.screens.ExtAttributeEditor"
+        extends="com/haulmont/cuba/gui/app/core/categories/attribute-edit.xml"
+        messagesPack="it.nexbit.cuba.dynamicattributesext.web.screens">
+    <dsContext>
+        <datasource
+                id="attributeDs"
+                class="it.nexbit.cuba.dynamicattributesext.entity.ExtCategoryAttribute">
+            <datasource id="configurationDs"
+                        datasourceClass="it.nexbit.cuba.dynamicattributesext.entity.ExtCategoryAttributeConfiguration"
+                        property="configuration" allowCommit="false"/>
+        </datasource>
+    </dsContext>
+    <layout>
+        <tabSheet id="tabsheet">
+            <tab id="calculatedAttrsAndOptions">
+                <fieldGroup id="calculatedAttrsAndOptionsFieldGroup">
+                    <column>
+                        <field id="rawSqlSelect" width="100%" caption="msg://rawSqlSelect.caption">
+                            <vbox margin="true" spacing="true" stylename="card" width="100%">
+                                <lookupField id="tableLookupField"
+                                             caption="msg://tableLookupField.caption"
+                                             width="100%"/>
+                                <lookupField id="fkColumnLookupField"
+                                             caption="msg://fkColumnLookupField.caption"
+                                             width="100%"/>
+                                <lookupField id="valueColumnLookupField"
+                                             caption="msg://valueColumnLookupField.caption"
+                                             width="100%"/>
+                            </vbox>
+                        </field>
+                    </column>
+                </fieldGroup>
+            </tab>
+        </tabSheet>
+    </layout>
+</window>

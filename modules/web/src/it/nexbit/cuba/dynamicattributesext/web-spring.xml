@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:gui="http://schemas.haulmont.com/cuba/spring/cuba-gui.xsd">
+
+    <!-- Annotation-based beans -->
+    <context:component-scan base-package="it.nexbit.cuba.dynamicattributesext"/>
+    
+    <gui:screens base-packages="it.nexbit.cuba.dynamicattributesext.web"/>
+    <bean id="dynattrext_proxyCreator"
+          class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="dynattrext_DatabaseMetaDataService"
+                       value="it.nexbit.cuba.dynamicattributesext.service.DatabaseMetaDataService"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>
